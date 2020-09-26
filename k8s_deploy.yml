@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: api01
-          image: "vdiniz001/fiap_page"
+          image: "vdiniz001/fiap_api01"
           ports:
             - name: http
               containerPort: 8080
