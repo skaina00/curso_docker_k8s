@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-api01
+  labels:
+    app: api01
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: api01
+  template:
+    metadata:
+      labels:
+        app: api01
+    spec:
+      containers:
+        - name: api01
+          image: "vdiniz001/fiap_api01"
+          ports:
+            - name: http
+              containerPort: 8080
+      tolerations:
+      - key: "node.kubernetes.io/unreachable"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 2
+      - key: "node.kubernetes.io/not-ready"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 2
